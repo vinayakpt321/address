@@ -13,5 +13,27 @@
       <a href="help.html">Help</a>
     </div>
   </nav>
+  <div class="main-content">
+    <h1>Address Book</h1>
+    <p class="welcome-msg">
+      Welcome to your personal Address Book! <br>
+      <span class="tagline">Securely manage your contacts right in your browser.</span>
+    </p>
+    <div class="contact-stats">
+      <span id="contactCount"></span>
+    </div>
+
+    <form id="contactForm">
+      <input type="hidden" id="contactId">
+      <input type="text" id="name" placeholder="Name" required>
+      <input type="text" id="phone" placeholder="Phone" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="address" placeholder="Address" required>
+      <button type="submit" id="saveBtn">Add Contact</button>
+      <button type="button" id="cancelEditBtn" style="display:none;">Cancel</button>
+    </form>
+
+    <input type="text" id="searchBox" placeholder="Search contacts...">
+  </div>
 </body>
 </html>
