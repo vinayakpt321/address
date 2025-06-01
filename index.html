@@ -112,7 +112,38 @@
       renderContacts(document.getElementById('searchBox').value);
     };
 
+    window.editContact = function(idx) {
+      const contacts = getContacts();
+      const c = contacts[idx];
+      document.getElementById('name').value = c.name;
+      document.getElementById('phone').value = c.phone;
+      document.getElementById('email').value = c.email;
+      document.getElementById('address').value = c.address;
+      document.getElementById('contactId').value = idx;
+      document.getElementById('saveBtn').textContent = "Save Changes";
+      document.getElementById('cancelEditBtn').style.display = "inline-block";
+    };
 
+    document.getElementById('cancelEditBtn').onclick = function() {
+      document.getElementById('contactForm').reset();
+      document.getElementById('contactId').value = '';
+      document.getElementById('saveBtn').textContent = "Add Contact";
+      this.style.display = "none";
+    };
+
+    window.deleteContact = function(idx) {
+      if (!confirm("Delete this contact?")) return;
+      let contacts = getContacts();
+      contacts.splice(idx, 1);
+      saveContacts(contacts);
+      renderContacts(document.getElementById('searchBox').value);
+    };
+
+    document.getElementById('searchBox').oninput = function() {
+      renderContacts(this.value);
+    };
+
+    renderContacts();
   </script>
 
 </body>
