@@ -51,5 +51,69 @@
       </tbody>
     </table>
   </div>
+
+  <script>
+    function getContacts() {
+      return JSON.parse(localStorage.getItem('contacts') || '[]');
+    }
+
+    function saveContacts(contacts) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+
+    function updateContactCount() {
+      const count = getContacts().length;
+      document.getElementById('contactCount').textContent =
+        `You have ${count} contact${count !== 1 ? 's' : ''} saved.`;
+    }
+
+    function renderContacts(filter = '') {
+      const contacts = getContacts();
+      const tbody = document.querySelector('#contactsTable tbody');
+      tbody.innerHTML = '';
+      contacts
+        .filter(c => c.name.toLowerCase().includes(filter.toLowerCase()))
+        .forEach((contact, idx) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${contact.name}</td>
+            <td>${contact.phone}</td>
+            <td>${contact.email}</td>
+            <td>${contact.address}</td>
+            <td>
+              <button onclick="editContact(${idx})">Edit</button>
+              <button onclick="deleteContact(${idx})">Delete</button>
+            </td>
+          `;
+          tbody.appendChild(tr);
+        });
+      updateContactCount();
+    }
+
+    document.getElementById('contactForm').onsubmit = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const contactId = document.getElementById('contactId').value;
+      let contacts = getContacts();
+
+      if (contactId === '') {
+        contacts.push({ name, phone, email, address });
+      } else {
+        contacts[contactId] = { name, phone, email, address };
+        document.getElementById('saveBtn').textContent = "Add Contact";
+        document.getElementById('cancelEditBtn').style.display = "none";
+      }
+      saveContacts(contacts);
+      this.reset();
+      document.getElementById('contactId').value = '';
+      renderContacts(document.getElementById('searchBox').value);
+    };
+
+
+  </script>
+
 </body>
 </html>
