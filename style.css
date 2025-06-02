@@ -3,14 +3,12 @@
   margin: 0;
   padding: 0;
 }
-
 body {
   font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
   background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%);
   min-height: 100vh;
   color: #222;
 }
-
 /* Navigation Bar Styles */
 nav {
   width: 100%;
@@ -21,13 +19,11 @@ nav {
   box-shadow: 0 2px 12px rgba(0,0,0,0.04);
   padding: 16px 0;
 }
-
 .nav-content {
   display: flex;
   align-items: center;
   gap: 30px;
 }
-
 .logo {
   height: 40px;
   width: 40px;
@@ -37,7 +33,6 @@ nav {
   background: #fff;
   padding: 4px;
 }
-
 nav a {
   text-decoration: none;
   color: #0074d9;
@@ -47,12 +42,10 @@ nav a {
   border-radius: 4px;
   transition: background 0.2s, color 0.2s;
 }
-
 nav a:hover, nav a:focus {
   background: #0074d9;
   color: #fff;
 }
-
 /* Main content card */
 .main-content {
   max-width: 600px;
